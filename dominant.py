@@ -17,6 +17,7 @@ def find_histogram(clt):
     hist /= hist.sum()
 
     return hist
+
 def plot_colors2(hist, centroids):
     bar = np.zeros((50, 300, 3), dtype="uint8")
     startX = 0
@@ -39,9 +40,9 @@ while(1):
     
     lower_blue = np.array([100,0,0])
     upper_blue = np.array([150,255,255])
-    mask = cv2.inRange(hsv, lower_blue, upper_blue)
+    mask = cv2.inRange(frame, lower_blue, upper_blue)
     #mask color with video frame
-    res = cv2.bitwise_and(frame, frame, mask= mask)
+
     #bounding box
     contours = cv2.findContours(mask.copy(), 1, 2)[-2]
 
@@ -53,7 +54,7 @@ while(1):
         
         cv2.imshow('frame', frame)
 
-        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        hsv = cv2.cvtColor(hsv, cv2.COLOR_BGR2HSV)
         hsv = hsv.reshape((hsv.shape[0] * hsv.shape[1],3)) #represent as row*column,channel number
 
         clt = KMeans(n_clusters=3) #cluster number

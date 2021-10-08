@@ -16,7 +16,7 @@ while(1):
 	hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
 	#thresholding?
-	lower_blue = np.array([0,100,200])
+	lower_blue = np.array([100,0,0])
 	upper_blue = np.array([150,255,255])
 	mask = cv2.inRange(hsv, lower_blue, upper_blue)
 
@@ -25,7 +25,6 @@ while(1):
 
 	#bounding box
 	contours = cv2.findContours(mask.copy(), 1, 2)[-2]
-
 	if len(contours) > 0:
 		area = max(contours, key=cv2.contourArea)
 		x,y,w,h = cv2.boundingRect(area)
