@@ -5,5 +5,4 @@ if __name__ == '__main__':
 	else:
 		#this is a comment
 		x = x + " - Best class ever"
-		print(x)
-
+		print(x + "\n Lab 2")
